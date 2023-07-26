@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('selectors', function (Blueprint $table) {
             $table->id();
+            $table->string('category');
+            $table->string('sub_category');
+            $table->string('external_code');
+            $table->string('description');
+            $table->boolean('is_principal')->default(false);
             $table->timestamps();
         });
     }

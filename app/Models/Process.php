@@ -10,9 +10,19 @@ class Process extends Model
     use HasFactory;
 
     protected $fillable = [
-        'active_party', 'lawyer_active_party', 'passive_party', 'lawyer_passive_party',
-        'process_number', 'filing_date', 'judicial_body', 'judge', 'action_class',
-        'subjects', 'additional_information', 'uploaded_files'
+        'active_party_id',
+        'passive_party_id',
+        'active_lawyer_id',
+        'passive_lawyer_id',
+        'number',
+        'court',
+        'judge',
+        'action_class',
+        'subject',
+        'value',
+        'status',
+
+        
     ];
 
     public function activePartySelector()

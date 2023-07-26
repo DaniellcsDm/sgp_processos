@@ -15,18 +15,18 @@ class SelectorSeeder extends Seeder
     {
         Selector::create([
             'category' => 'Categoria 1',
-            'subcategory' => 'Subcategoria 1',
+            'sub_category' => 'Subcategoria 1',
             'external_code' => 'COD001',
             'description' => 'Descrição do Selecionador 1',
-            'primary' => true,
+            'is_principal' => true,
         ]);
 
         Selector::create([
             'category' => 'Categoria 1',
-            'subcategory' => 'Subcategoria 2',
+            'sub_category' => 'Subcategoria 2',
             'external_code' => 'COD002',
             'description' => 'Descrição do Selecionador 2',
-            'primary' => false,
+            'is_principal' => false,
         ]);
     }
 }

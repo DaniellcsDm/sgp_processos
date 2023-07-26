@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('position')->default(0);
+            $table->string('icon')->nullable();
+            $table->enum('status', ['Ativo', 'Inativo'])->default('Ativo');
             $table->timestamps();
         });
     }

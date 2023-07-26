@@ -10,10 +10,16 @@ class Module extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 
-        'friendly_url', 
-        'menu_position', 
-        'icon', 
-        'status'
+        'title',
+        'slug',
+        'position',
+        'icon',
+        'status',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

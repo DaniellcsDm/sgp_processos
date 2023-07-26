@@ -1,7 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\UserTypeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LawyerController;
+use App\Http\Controllers\ProcessController;
+use App\Http\Controllers\ProcessInformationController;
+use App\Http\Controllers\ProcessFileController;
+use App\Http\Controllers\SelectorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +24,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('modules', ModuleController::class);
+
+Route::resource('user-types', UserTypeController::class);
+
+Route::resource('users', UserController::class);
+
+Route::resource('selectors', SelectorController::class);
+
+Route::resource('clients', ClientController::class);
+
+Route::resource('lawyers', LawyerController::class);
+
+Route::resource('processes', ProcessController::class);
+
+Route::resource('process-informations', ProcessInformationController::class);
+
+Route::resource('process-files', ProcessFileController::class);

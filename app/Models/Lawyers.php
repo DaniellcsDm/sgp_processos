@@ -10,11 +10,30 @@ class Lawyers extends Model
     use HasFactory;
 
     protected $fillable = [
-        'full_name', 'date_of_birth', 'rg', 'cpf_cnpj', 'gender',
-        'registration_number', 'education', 'birthplace', 'marital_status',
-        'personal_email', 'business_email', 'parentage', 'whatsapp_i', 'whatsapp_ii',
-        'cep', 'address', 'address_number', 'address_complement', 'neighborhood',
-        'city', 'state', 'date_inclusion', 'status'
+        'full_name',
+        'birth_date',
+        'rg',
+        'cpf_cnpj',
+        'gender',
+        'registration_number',
+        'education',
+        'birth_place',
+        'marital_status',
+        'personal_email',
+        'commercial_email',
+        'mother_name',
+        'father_name',
+        'whatsapp_1',
+        'whatsapp_2',
+        'zip_code',
+        'address',
+        'address_number',
+        'address_complement',
+        'neighborhood',
+        'city',
+        'state',
+        'inclusion_date',
+        'status',
     ];
 
     public function genderSelector()
