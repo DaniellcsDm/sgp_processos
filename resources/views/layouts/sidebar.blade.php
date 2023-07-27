@@ -10,10 +10,10 @@ id="sidenav-main">
     </a>
 </div>
 <hr class="horizontal dark mt-0">
-<div class="collapse navbar-collapse w-auto ps ps--active-y" id="sidenav-collapse-main">
+<div class="collapse navbar-collapse w-auto ps ps--active-y h-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('modules.index')}}">
+            <a class="nav-link" href="{{route('modules.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -22,7 +22,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('user-types.index')}}">
+            <a class="nav-link" href="{{route('user-types.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -31,7 +31,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('users.index')}}">
+            <a class="nav-link" href="{{route('users.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -40,7 +40,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('selectors.index')}}">
+            <a class="nav-link" href="{{route('selectors.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -49,7 +49,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('clients.index')}}">
+            <a class="nav-link" href="{{route('clients.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -58,7 +58,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('lawyers.index')}}">
+            <a class="nav-link" href="{{route('lawyers.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -67,7 +67,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('processes.index')}}">
+            <a class="nav-link" href="{{route('processes.index')}}">
                 <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>

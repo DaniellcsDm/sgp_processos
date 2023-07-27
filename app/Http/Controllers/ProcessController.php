@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Process;
+use App\Models\Selector;
 use Illuminate\Http\Request;
 
 class ProcessController extends Controller
@@ -13,7 +15,7 @@ class ProcessController extends Controller
     public function index()
     {
         $processes = Process::all();
-        return view('pages.processes.index', compact('processes'));
+        return view('pages.process.index', compact('processes'));
     }
 
     /**
@@ -21,7 +23,10 @@ class ProcessController extends Controller
      */
     public function create()
     {
-        return view('pages.processes.create');
+        $active_clients = Client::where('role', 'Ativo')->get();
+        $passive_clients = Client::where('role', 'Passivo')->get();
+        $selectors = Selector::all();
+        return view('pages.process.create', compact('active_clients', 'passive_clients', 'selectors'));
     }
 
     /**
@@ -50,26 +55,26 @@ class ProcessController extends Controller
 
         Process::create($request->all());
 
-        return redirect()->route('pages.processes.index')->with('success', 'Process created successfully!');
+        return redirect()->route('processes.index')->with('success', 'Process created successfully!');
     
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Process $process)
     {
-        $process = Process::findOrFail($id);
-        return view('pages.processes.show', compact('process'));
+        return view('pages.process.show', compact('process'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Process $process)
     {
-        $process = Process::findOrFail($id);
-        return view('pages.processes.edit', compact('process'));
+        $clients = Client::all();
+        $selectors = Selector::all();
+        return view('pages.process.edit', compact('process', 'clients', 'selectors'));
     }
 
     /**
@@ -99,19 +104,19 @@ class ProcessController extends Controller
         $process = Process::findOrFail($id);
         $process->update($request->all());
 
-        return redirect()->route('pages.processes.index')->with('success', 'Process updated successfully!');
+        return redirect()->route('processes.index')->with('success', 'Process updated successfully!');
    
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Process $process)
     {
-        $process = Process::findOrFail($id);
+        $process->subjects()->detach();
         $process->delete();
 
-        return redirect()->route('pages.processes.index')->with('success', 'Process deleted successfully!');
+        return redirect()->route('pages.process.index')->with('success', 'Process deleted successfully!');
     
     }
 }

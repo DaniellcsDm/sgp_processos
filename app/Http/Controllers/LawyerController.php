@@ -13,7 +13,7 @@ class LawyerController extends Controller
     public function index()
     {
         $lawyers = Lawyers::all();
-        return view('pages.lawyers.index', compact('lawyers'));
+        return view('pages.lawyer.index', compact('lawyers'));
     }
 
     /**
@@ -21,7 +21,7 @@ class LawyerController extends Controller
      */
     public function create()
     {
-        return view('pages.lawyers.create');
+        return view('pages.lawyer.create');
 
     }
 
@@ -61,7 +61,7 @@ class LawyerController extends Controller
         ]);
         Lawyers::create($request->all());
 
-        return redirect()->route('pages.lawyers.index')->with('success', 'Lawyer created successfully!');
+        return redirect()->route('lawyers.index')->with('success', 'Lawyer created successfully!');
     
     }
 
@@ -71,7 +71,7 @@ class LawyerController extends Controller
     public function show(string $id)
     {
         $lawyer = Lawyers::findOrFail($id);
-        return view('pages.lawyers.show', compact('lawyer'));
+        return view('pages.lawyer.show', compact('lawyer'));
     }
 
     /**
@@ -80,7 +80,7 @@ class LawyerController extends Controller
     public function edit(string $id)
     {
         $lawyer = Lawyers::findOrFail($id);
-        return view('pages.lawyers.edit', compact('lawyer'));
+        return view('pages.lawyer.edit', compact('lawyer'));
     }
 
     /**
@@ -121,7 +121,7 @@ class LawyerController extends Controller
         $lawyer = Lawyers::findOrFail($id);
         $lawyer->update($request->all());
 
-        return redirect()->route('pages.lawyers.index')->with('success', 'Lawyer updated successfully!');
+        return redirect()->route('lawyers.index')->with('success', 'Lawyer updated successfully!');
    
     }
 
@@ -133,7 +133,7 @@ class LawyerController extends Controller
         $lawyer = Lawyers::findOrFail($id);
         $lawyer->delete();
 
-        return redirect()->route('pages.lawyers.index')->with('success', 'Lawyer deleted successfully!');
+        return redirect()->route('lawyers.index')->with('success', 'Lawyer deleted successfully!');
     
     }
 }

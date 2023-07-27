@@ -2,15 +2,16 @@
 <html>
 
 <head>
-    <title>Meu Projeto Laravel</title>
+    <title>Sgp Processos</title>
     <link href="{{ asset('assets/css/argon-dashboard.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet">
 </head>
 
-<body>
-    @include('layouts.sidebar')
-   
+<body class="bg-dark">
+    @auth
+        @include('layouts.sidebar')
+    @endauth
     <div class="main-content position-relative border-radius-lg ps">
         <div class="container-fluid py-4">
             @yield('content')

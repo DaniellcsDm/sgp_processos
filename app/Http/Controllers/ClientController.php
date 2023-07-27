@@ -13,7 +13,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-        return view('pages.clients.index', compact('clients'));
+        return view('pages.client.index', compact('clients'));
     }
 
     /**
@@ -21,7 +21,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('pages.clients.create');
+        return view('pages.client.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
-        return redirect()->route('pages.clients.index')->with('success', 'Client created successfully!');
+        return redirect()->route('clients.index')->with('success', 'Client created successfully!');
     }
 
     /**
@@ -72,7 +72,7 @@ class ClientController extends Controller
     public function show(string $id)
     {
         $client = Client::findOrFail($id);
-        return view('pages.clients.show', compact('client'));
+        return view('pages.client.show', compact('client'));
     }
 
     /**
@@ -81,7 +81,7 @@ class ClientController extends Controller
     public function edit(string $id)
     {
         $client = Client::findOrFail($id);
-        return view('pages.clients.edit', compact('client'));
+        return view('pages.client.edit', compact('client'));
     }
 
     /**
@@ -124,7 +124,7 @@ class ClientController extends Controller
         $client = Client::findOrFail($id);
         $client->update($request->all());
 
-        return redirect()->route('pages.clients.index')->with('success', 'Client updated successfully!');
+        return redirect()->route('clients.index')->with('success', 'Client updated successfully!');
     
     }
 
@@ -136,7 +136,7 @@ class ClientController extends Controller
         $client = Client::findOrFail($id);
         $client->delete();
 
-        return redirect()->route('pages.clients.index')->with('success', 'Client deleted successfully!');
+        return redirect()->route('clients.index')->with('success', 'Client deleted successfully!');
   
     }
 }

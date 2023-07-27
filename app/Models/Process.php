@@ -20,36 +20,28 @@ class Process extends Model
         'action_class',
         'subject',
         'value',
-        'status',
-
-        
+        'status'
     ];
 
-    public function activePartySelector()
+    public function activeParty()
     {
-        return $this->belongsTo(Selector::class);
+        return $this->belongsTo(Client::class, 'active_party_id');
     }
 
-    public function passivePartySelector()
+    public function passiveParty()
     {
-        return $this->belongsTo(Selector::class);
+        return $this->belongsTo(Client::class, 'passive_party_id');
     }
 
-    public function actionClassSelector()
+    public function activeLawyer()
     {
-        return $this->belongsTo(Selector::class);
+        return $this->belongsTo(Lawyer::class, 'active_lawyer_id');
     }
 
-    public function activePartyLawyers()
+    public function passiveLawyer()
     {
-        return $this->hasMany(Lawyer::class);
+        return $this->belongsTo(Lawyer::class, 'passive_lawyer_id');
     }
-
-    public function passivePartyLawyers()
-    {
-        return $this->hasMany(Lawyer::class);
-    }
-
 
 
 }

@@ -13,7 +13,7 @@ class SelectorController extends Controller
     public function index()
     {
         $selectors = Selector::all();
-        return view('pages.selectors.index', compact('selectors'));
+        return view('pages.selector.index', compact('selectors'));
     }
 
     /**
@@ -21,7 +21,7 @@ class SelectorController extends Controller
      */
     public function create()
     {
-        return view('pages.selectors.create');
+        return view('pages.selector.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class SelectorController extends Controller
 
         Selector::create($request->all());
 
-        return redirect()->route('pages.selectors.index')->with('success', 'Selector created successfully!');
+        return redirect()->route('selectors.index')->with('success', 'Selector created successfully!');
    
     }
 
@@ -49,7 +49,7 @@ class SelectorController extends Controller
     public function show(string $id)
     {
         $selector = Selector::findOrFail($id);
-        return view('pages.selectors.show', compact('selector'));
+        return view('pages.selector.show', compact('selector'));
     }
 
     /**
@@ -58,7 +58,7 @@ class SelectorController extends Controller
     public function edit(string $id)
     {
         $selector = Selector::findOrFail($id);
-        return view('pages.selectors.edit', compact('selector'));
+        return view('pages.selector.edit', compact('selector'));
     }
 
     /**
@@ -77,7 +77,7 @@ class SelectorController extends Controller
         $selector = Selector::findOrFail($id);
         $selector->update($request->all());
 
-        return redirect()->route('pages.selectors.index')->with('success', 'Selector updated successfully!');
+        return redirect()->route('selectors.index')->with('success', 'Selector updated successfully!');
     
     }
 
@@ -89,7 +89,7 @@ class SelectorController extends Controller
         $selector = Selector::findOrFail($id);
         $selector->delete();
 
-        return redirect()->route('pages.selectors.index')->with('success', 'Selector deleted successfully!');
+        return redirect()->route('selectors.index')->with('success', 'Selector deleted successfully!');
    
     }
 }

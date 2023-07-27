@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Editar Registro</h2>
-    <!-- Conteúdo específico da página edit -->
+    @include('_includes.alerts')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header mb-0 d-flex justify-content-between">
+                    <h3>Editar Registro</h3>
+                </div>
+                <div class="card-body pt-0 pb-2">
+
+                    <form action="{{ route('clients.update', $client->id) }}" method="POST">
+                        @method('PUT')
+                        @csrf
+                        @include('pages.client._partials.inputs')
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                        <a class="btn btn-secondary" href="{{ route('clients.index') }}">Voltar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Conteúdo específico da página create -->
 @endsection

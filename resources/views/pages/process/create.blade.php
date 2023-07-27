@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Criar Novo Registro</h2>
-    <!-- Conteúdo específico da página create -->
+@include('_includes.alerts')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header mb-0 d-flex justify-content-between">
+                    <h3>Criar Novo Registro</h3>
+                </div>
+                <div class="card-body pt-0 pb-2">
+
+                    <form action="{{ route('processes.store') }}" method="POST">
+                        @csrf
+                        @include('pages.process._partials.inputs')
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

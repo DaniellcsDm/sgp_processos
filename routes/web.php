@@ -24,21 +24,27 @@ use App\Http\Controllers\SelectorController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware('auth')->group(function () {
+    Route::resource('modules', ModuleController::class);
 
-Route::resource('modules', ModuleController::class);
+    Route::resource('user-types', UserTypeController::class);
 
-Route::resource('user-types', UserTypeController::class);
+    Route::resource('users', UserController::class);
 
-Route::resource('users', UserController::class);
+    Route::resource('selectors', SelectorController::class);
 
-Route::resource('selectors', SelectorController::class);
+    Route::resource('clients', ClientController::class);
 
-Route::resource('clients', ClientController::class);
+    Route::resource('lawyers', LawyerController::class);
 
-Route::resource('lawyers', LawyerController::class);
+    Route::resource('processes', ProcessController::class);
 
-Route::resource('processes', ProcessController::class);
+    Route::resource('process-informations', ProcessInformationController::class);
 
-Route::resource('process-informations', ProcessInformationController::class);
+    Route::resource('process-files', ProcessFileController::class);
 
-Route::resource('process-files', ProcessFileController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+
+Auth::routes();

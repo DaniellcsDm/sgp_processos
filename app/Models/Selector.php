@@ -10,6 +10,6 @@ class Selector extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category', 'subcategory', 'external_code', 'description', 'primary'
+        'category', 'sub_category', 'external_code', 'description', 'is_principal'
     ];
 }
