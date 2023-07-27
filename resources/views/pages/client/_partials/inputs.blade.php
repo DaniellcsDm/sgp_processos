@@ -1,11 +1,18 @@
 <div class="form-group">
     <label for="type">Tipo</label>
-    <input type="text" class="form-control" id="type" name="type" value="{{ isset($client) ? $client->type : old('type') }}" required>
+    <select class="form-control" id="type" name="type" required>
+        <option value="Pessoa Física" @if(old('type', isset($client) ? $client->type : '') === 'Pessoa Física') selected @endif>Pessoa Física</option>
+        <option value="Pessoa Jurídica" @if(old('type', isset($client) ? $client->type : '') === 'Pessoa Jurídica') selected @endif>Pessoa Jurídica</option>
+    </select>
 </div>
 
 <div class="form-group">
-    <label for="role">Role</label>
-    <input type="text" class="form-control" id="role" name="role" value="{{ isset($client) ? $client->role : old('role') }}" required>
+    <label for="role">Polo</label>
+    <select class="form-control" id="role" name="role" required>
+        <option value="Ativo" @if(old('role', isset($client) ? $client->role : '') === 'Ativo') selected @endif>Ativo</option>
+        <option value="Passivo" @if(old('role', isset($client) ? $client->role : '') === 'Passivo') selected @endif>Passivo</option>
+        <option value="Interessado" @if(old('role', isset($client) ? $client->role : '') === 'Interessado') selected @endif>Interessado</option>
+    </select>
 </div>
 
 <div class="form-group">

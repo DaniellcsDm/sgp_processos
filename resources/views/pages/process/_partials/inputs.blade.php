@@ -10,12 +10,29 @@
 <div class="form-group">
     <label for="passive_party_id">Parte Passiva</label>
     <select class="form-control" id="passive_party_id" name="passive_party_id" required>
-        @foreach ($passive_clientss as $client)
+        @foreach ($passive_clients as $client)
             <option value="{{ $client->id }}" @if(isset($process) && $process->passive_party_id == $client->id) selected @endif>{{ $client->full_name }}</option>
         @endforeach
     </select>
 </div>
-
+<div class="form-group">
+    <label for="active_lawyer_id">Advogado Ativo Responsável</label>
+    <select class="form-control" id="active_lawyer_id" name="active_lawyer_id" required>
+        <option value="" disabled selected>Selecione o Advogado</option>
+        @foreach ($lawyers as $lawyer)
+            <option value="{{ $lawyer->id }}" @if(isset($process) && $process->active_lawyer_id == $lawyer->id) selected @endif>{{ $lawyer->full_name }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
+    <label for="passive_lawyer_id">Advogado passivo Responsável</label>
+    <select class="form-control" id="passive_lawyer_id" name="passive_lawyer_id" required>
+        <option value="" disabled selected>Selecione o Advogado</option>
+        @foreach ($lawyers as $lawyer)
+            <option value="{{ $lawyer->id }}" @if(isset($process) && $process->passive_lawyer_id == $lawyer->id) selected @endif>{{ $lawyer->full_name }}</option>
+        @endforeach
+    </select>
+</div>
 <div class="form-group">
     <label for="number">Número do Processo</label>
     <input type="text" class="form-control" id="number" name="number" value="{{ isset($process) ? $process->number : old('number') }}" required>

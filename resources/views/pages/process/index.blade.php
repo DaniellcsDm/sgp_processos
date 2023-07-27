@@ -41,13 +41,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{dd($processes)}}
                                 @forelse ($processes as $process)
                                     <tr>
                                         <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $process->active_party->full_name }}</h6>
+                                            <h6 class="mb-0 text-sm">{{ $process->activeParty->full_name }}</h6>
                                         </td>
                                         <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $process->passive_party->full_name }}</h6>
+                                            <h6 class="mb-0 text-sm">{{ $process->passiveParty->full_name }}</h6>
                                         </td>
                                         <td class="text-center">
                                             <h6 class="mb-0 text-sm">{{ $process->number }}</h6>
@@ -66,7 +67,7 @@
                                         </td>
                                         <td class="text-center">
                                             <h6 class="mb-0 text-sm">
-                                                @foreach ($process->subjects as $subject)
+                                                @foreach (json_decode($process->subjects) as $subject)
                                                     {{ $subject->description }}@if (!$loop->last), @endif
                                                 @endforeach
                                             </h6>

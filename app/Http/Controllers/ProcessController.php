@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Lawyers;
 use App\Models\Process;
 use App\Models\Selector;
 use Illuminate\Http\Request;
@@ -25,8 +26,9 @@ class ProcessController extends Controller
     {
         $active_clients = Client::where('role', 'Ativo')->get();
         $passive_clients = Client::where('role', 'Passivo')->get();
+        $lawyers = Lawyers::all();
         $selectors = Selector::all();
-        return view('pages.process.create', compact('active_clients', 'passive_clients', 'selectors'));
+        return view('pages.process.create', compact('active_clients', 'passive_clients', 'selectors', 'lawyers'));
     }
 
     /**
@@ -35,25 +37,25 @@ class ProcessController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'active_parties' => 'required|array',
-            'active_parties.*' => 'required|exists:clients,id',
-            'active_lawyers' => 'required|array',
-            'active_lawyers.*' => 'required|exists:lawyers,id',
-            'passive_parties' => 'required|array',
-            'passive_parties.*' => 'required|exists:clients,id',
-            'passive_lawyers' => 'required|array',
-            'passive_lawyers.*' => 'required|exists:lawyers,id',
-            'court' => 'required|string|max:255',
+            'active_party_id' => 'required|exists:clients,id',
+            'passive_party_id' => 'required|exists:clients,id',
+            'active_lawyer_id' => 'required|exists:lawyers,id',
             'number' => 'required|string|max:255|unique:processes',
-            'subject' => 'required|string|max:255',
+            'autuation_date' => 'required|date',
+            'court' => 'required|string|max:255',
+            'judge' => 'required|string|max:255',
+            'action_class' => 'required|string|max:255',
+            'subjects' => 'required|array',
             'value' => 'required|numeric',
             'status' => 'required|in:Ativo,Inativo,Concluído,Arquivado',
             'file_title' => 'nullable|string|max:255',
             'file_attachment' => 'nullable|string|max:255',
             'file_inclusion_date' => 'nullable|date',
         ]);
-
-        Process::create($request->all());
+        $data = [];
+        $data = $request->all();
+        $data['subject'] = json_encode($request->subjects);
+        Process::create($data);
 
         return redirect()->route('processes.index')->with('success', 'Process created successfully!');
     
@@ -74,7 +76,8 @@ class ProcessController extends Controller
     {
         $clients = Client::all();
         $selectors = Selector::all();
-        return view('pages.process.edit', compact('process', 'clients', 'selectors'));
+        $lawyers = Lawyers::all();
+        return view('pages.process.edit', compact('process', 'clients', 'selectors', 'lawyers'));
     }
 
     /**

@@ -34,37 +34,36 @@
                             </thead>
                             <tbody>
                                 @forelse ($clients as $client)
-                                    <tr>
-                                        <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $client->title }}</h6>
-                                        </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $client->slug }}</h6>
-                                        </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $client->position }}</h6>
-                                        </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $client->icon }}</h6>
-                                        </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0 text-sm">{{ $client->status }}</h6>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning btn-sm text-white text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Editar cliente">
-                                                Editar
-                                            </a>
-                                            <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                        
-                                                <button type="submit" class="btn btn-danger btn-sm text-white text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete cliente" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <h6 class="mb-0 text-sm">{{ $client->type }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <h6 class="mb-0 text-sm">{{ $client->role }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <h6 class="mb-0 text-sm">{{ $client->full_name }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <h6 class="mb-0 text-sm">{{ $client->cpf_cnpj }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <h6 class="mb-0 text-sm">{{ $client->status }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning btn-sm text-white text-secondary font-weight-bold text-xs"
+                                            data-toggle="tooltip" data-original-title="Editar cliente">
+                                            Editar
+                                        </a>
+                                        <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm text-white text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Excluir cliente" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                                Excluir
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 @empty
                                     <tr>
                                         <td colspan="5" class="text-center">Nenhum cliente encontrado.</td>
