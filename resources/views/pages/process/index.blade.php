@@ -41,7 +41,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{dd($processes)}}
                                 @forelse ($processes as $process)
                                     <tr>
                                         <td class="text-center">
