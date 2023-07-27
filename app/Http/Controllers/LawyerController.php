@@ -68,25 +68,23 @@ class LawyerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Lawyers $lawyer)
     {
-        $lawyer = Lawyers::findOrFail($id);
         return view('pages.lawyer.show', compact('lawyer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Lawyers $lawyer)
     {
-        $lawyer = Lawyers::findOrFail($id);
         return view('pages.lawyer.edit', compact('lawyer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Lawyers $lawyer)
     {
         $request->validate([
             'full_name' => 'required|string|max:255',
@@ -118,7 +116,6 @@ class LawyerController extends Controller
             'file_inclusion_date' => 'nullable|date',
         ]);
 
-        $lawyer = Lawyers::findOrFail($id);
         $lawyer->update($request->all());
 
         return redirect()->route('lawyers.index')->with('success', 'Lawyer updated successfully!');
@@ -128,9 +125,8 @@ class LawyerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Lawyers $lawyer)
     {
-        $lawyer = Lawyers::findOrFail($id);
         $lawyer->delete();
 
         return redirect()->route('lawyers.index')->with('success', 'Lawyer deleted successfully!');

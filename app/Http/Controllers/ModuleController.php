@@ -46,35 +46,31 @@ class ModuleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Module $module)
     {
-        $module = Module::findOrFail($id);
         return view('pages.module.show', compact('module'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Module $module)
     {
-        $module = Module::findOrFail($id);
         return view('pages.module.edit', compact('module'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Module $module)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:modules,slug,' . $id,
+            'slug' => 'required|string|max:255|unique:modules,slug,' . $module->id,
             'position' => 'required',
             'icon' => 'nullable|string|max:255',
             'status' => 'required|in:Ativo,Inativo',
         ]);
-    
-        $module = Module::findOrFail($id);
         $module->update($request->all());
     
         return redirect()->route('modules.index')->with('success', 'Module updated successfully!');
@@ -84,9 +80,8 @@ class ModuleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Module $module)
     {    
-        $module = Module::findOrFail($id);
         $module->delete();
 
         return redirect()->route('modules.index')->with('success', 'Module deleted successfully!');

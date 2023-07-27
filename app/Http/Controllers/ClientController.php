@@ -69,25 +69,23 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Client $client)
     {
-        $client = Client::findOrFail($id);
         return view('pages.client.show', compact('client'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $client)
     {
-        $client = Client::findOrFail($id);
         return view('pages.client.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Client $client)
     {
         $request->validate([
             'type' => 'required|in:Pessoa Física,Pessoa Jurídica',
@@ -121,7 +119,6 @@ class ClientController extends Controller
             'file_inclusion_date' => 'nullable|date',
         ]);
 
-        $client = Client::findOrFail($id);
         $client->update($request->all());
 
         return redirect()->route('clients.index')->with('success', 'Client updated successfully!');
@@ -131,9 +128,8 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Client $client)
     {
-        $client = Client::findOrFail($id);
         $client->delete();
 
         return redirect()->route('clients.index')->with('success', 'Client deleted successfully!');

@@ -46,25 +46,23 @@ class SelectorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Selector $selector)
     {
-        $selector = Selector::findOrFail($id);
         return view('pages.selector.show', compact('selector'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Selector $selector)
     {
-        $selector = Selector::findOrFail($id);
         return view('pages.selector.edit', compact('selector'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Selector $selector)
     {
         $request->validate([
             'category' => 'required|string|max:255',
@@ -74,7 +72,6 @@ class SelectorController extends Controller
             'is_principal' => 'required|boolean',
         ]);
 
-        $selector = Selector::findOrFail($id);
         $selector->update($request->all());
 
         return redirect()->route('selectors.index')->with('success', 'Selector updated successfully!');
@@ -84,9 +81,8 @@ class SelectorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Selector $selector)
     {
-        $selector = Selector::findOrFail($id);
         $selector->delete();
 
         return redirect()->route('selectors.index')->with('success', 'Selector deleted successfully!');

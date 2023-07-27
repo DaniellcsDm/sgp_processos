@@ -42,31 +42,28 @@ class UserTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(UserType $userType)
     {
-        $userType = UserType::findOrFail($id);
         return view('pages.user_type.show', compact('userType'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(UserType $userType)
     {
-        $userType = UserType::findOrFail($id);
         return view('pages.user_type.edit', compact('userType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, UserType $userType)
     {
         $request->validate([
-            'type' => 'required|string|max:255|unique:user_types,type,' . $id,
+            'type' => 'required|string|max:255|unique:user_types,type,' . $userType->id,
         ]);
 
-        $userType = UserType::findOrFail($id);
         $userType->update($request->all());
 
         return redirect()->route('user-types.index')->with('success', 'User Type updated successfully!');
@@ -76,9 +73,8 @@ class UserTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(UserType $userType)
     {
-        $userType = UserType::findOrFail($id);
         $userType->delete();
 
         return redirect()->route('user-types.index')->with('success', 'User Type deleted successfully!');
